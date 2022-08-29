@@ -1,5 +1,6 @@
 import requests
 import time
+from parsel import Selector
 
 
 # Requisito 1
@@ -16,7 +17,9 @@ def fetch(url, timeout=3):
 
 # Requisito 2
 def scrape_novidades(html_content):
-    """Seu código deve vir aqui"""
+    selector = Selector(html_content)
+    return selector.css(
+        "div.post-outer div.entry-thumbnail a::attr(href)").getall()
 
 
 # Requisito 3
