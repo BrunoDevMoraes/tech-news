@@ -1,8 +1,17 @@
-# Starting Project
-# Requisito 1
-def fetch(url):
-    """Seu código deve vir aqui"""
+import requests
+import time
 
+
+# Requisito 1
+def fetch(url, timeout=3):
+    try:
+        time.sleep(1)
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+    except (requests.HTTPError, requests.ReadTimeout):
+        return None
+    else:
+        return response.text
 
 # Requisito 2
 def scrape_novidades(html_content):
