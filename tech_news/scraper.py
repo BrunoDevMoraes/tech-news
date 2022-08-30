@@ -39,7 +39,8 @@ def scrape_noticia(html_content):
         timestamp = timestamp.split(" ", 1)[0]
     writer = selector.css("span.author a.url.fn.n::text").get()
     comments_count = len(selector.css("ol.comment-list li").getall())
-    summary = selector.css("div.entry-content > p:first-of-type ::text").getall()
+    summary = selector.css(
+        "div.entry-content > p:first-of-type ::text").getall()
     summary_ok = "".join(summary).strip()
     tags = selector.css("section.post-tags a::text").getall()
     category = selector.css("a.category-style span.label::text").get()
@@ -54,6 +55,7 @@ def scrape_noticia(html_content):
         "category": category
     }
     return dictionary
+
 
 # Requisito 5
 def get_tech_news(amount):
